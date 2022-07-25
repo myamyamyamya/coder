@@ -28,15 +28,15 @@ public class Screen extends JFrame {
         EventList.Eventlist.add(ps);
     }
     public void paint(Graphics g) {
-        ScreenImage = createImage(1600, 900);
+        ScreenImage = createImage(1600, 869);
         screenGraphics = ScreenImage.getGraphics();
         screenDraw((Graphics2D) screenGraphics);
-        g.drawImage(ScreenImage, 0, 0, null);
+        g.drawImage(ScreenImage, 0, 31, null);
     }
     public void screenDraw(Graphics2D g) {
         paintComponents(g);
         g.drawImage(Line, 300, 0, null);
-        g.drawImage(Line2, 300, 100, null);
+        g.drawImage(Line2, 300, 60, null);
         g.setColor(Color.BLACK);
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g.setFont(new Font("Korean", Font.BOLD, 40));
