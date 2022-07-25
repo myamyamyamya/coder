@@ -10,6 +10,7 @@ public class ProgramStart extends Event {
         EventIcon = new ImageIcon("C://Jongyeol/ProgramStart.png");
         EventId = 0;
         this.screen = screen;
+        prefix = "public static void main(String[] args){\n";
+        suffix = "}\n";
     }
-
 }
