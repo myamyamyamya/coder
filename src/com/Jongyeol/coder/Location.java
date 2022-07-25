@@ -12,7 +12,7 @@ public class Location {
     public static void Location(){
         for(int i = 0; i < EventList.Eventlist.size(); i++){
             JButton button = Screen.buttonlist.get(i);
-            if(button.isVisible()){ continue; }
+            if(button.isVisible()) continue;
             Event event = EventList.Eventlist.get(i);
             button.setIcon(event.EventIcon);
             button.addMouseListener(new MouseAdapter() {
