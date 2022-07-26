@@ -3,7 +3,6 @@ package com.Jongyeol.coder;
 import com.Jongyeol.coder.Code.Event;
 import com.Jongyeol.coder.Code.EventList;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -27,6 +26,7 @@ public class Save {
             OutputStream output = new FileOutputStream("C://Jongyeol/Main.java");
             byte[] by = code.getBytes();
             output.write(by);
+            Runtime.getRuntime().exec("cmd /c start C:\\Jongyeol\\start.bat");
         } catch (IOException e) {
             e.getStackTrace();
         }

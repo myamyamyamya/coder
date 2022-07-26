@@ -1,5 +1,7 @@
 package com.Jongyeol.coder;
 
+import com.Jongyeol.coder.Code.Code;
+import com.Jongyeol.coder.Code.Detail.DrawDetail;
 import com.Jongyeol.coder.Code.EventList;
 import com.Jongyeol.coder.Code.EventType.ProgramStart;
 
@@ -7,7 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 public class Screen extends JFrame {
     private Image ScreenImage;
@@ -19,7 +20,17 @@ public class Screen extends JFrame {
     private ImageIcon save1 = new ImageIcon(Main.class.getResource("../../../resource/save1.png"));
     private ImageIcon save2 = new ImageIcon(Main.class.getResource("../../../resource/save2.png"));
     private JButton save = new JButton(save1);
-    public static ArrayList<JButton> buttonlist = new ArrayList<JButton>();
+
+    public void setSelectCode(Code selectCode) {
+        this.selectCode = selectCode;
+        DrawDetail.Reload(this);
+    }
+
+    public Code getSelectCode() {
+        return selectCode;
+    }
+
+    private Code selectCode;
     public Screen() {
         setTitle("Coder");
         setSize(1600, 900);
@@ -33,6 +44,8 @@ public class Screen extends JFrame {
         ps.ButtonCreate();
         EventList.Eventlist.add(ps);
         CreateSave();
+        setSelectCode(new Code());
+        DrawDetail.CodeSetting(this);
     }
     public void paint(Graphics g) {
         ScreenImage = createImage(1600, 900);
@@ -46,6 +59,7 @@ public class Screen extends JFrame {
         g.setFont(new Font("Korean", Font.BOLD, 40));
         paintComponents(g);
         g.drawImage(Line, 300, 0, null);
+        g.drawImage(Line, 1300, 91, null);
         g.drawImage(Line2, 300, 91, null);
         //Location.Location();
         try {

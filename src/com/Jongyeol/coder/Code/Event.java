@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class Event {
+public class Event extends Code {
     public Icon EventIcon;
     public byte EventId;
     public int x;
@@ -16,6 +16,11 @@ public class Event {
 
     public String prefix;
     public String suffix;
+    public Event event;
+    public Event(){
+        CodeId = 1;
+        event = this;
+    }
     public void setLocation(int x, int y){
         this.x = x;
         this.y = y;
@@ -41,6 +46,7 @@ public class Event {
 
                 @Override
                 public void mousePressed(MouseEvent e) {
+                    screen.setSelectCode(event);
                 }
             });
             screen.add(button);
