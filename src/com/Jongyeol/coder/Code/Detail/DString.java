@@ -1,6 +1,5 @@
 package com.Jongyeol.coder.Code.Detail;
 
-import com.Jongyeol.coder.Code.Detail.event.DStringEvent;
 import com.Jongyeol.coder.Screen;
 
 import javax.swing.*;
@@ -10,19 +9,19 @@ public class DString implements Detail {
     public String Default = "";
     public JLabel label;
     public JTextField textField;
-    public DStringEvent event;
+    public DetailEvent event;
     public String Name;
     public String getString() {
         return string;
     }
 
     private String string = "";
-    public DString(String Name, DStringEvent event){
+    public DString(String Name, DetailEvent event){
         this.Name = Name;
         this.event = event;
         setting();
     }
-    public DString(String Name, String Default, DStringEvent event){
+    public DString(String Name, String Default, DetailEvent event){
         this.Name = Name;
         this.Default = Default;
         this.event = event;
@@ -35,6 +34,7 @@ public class DString implements Detail {
         label.setVisible(true);
         label.setFont(new Font("Korean", Font.PLAIN, 20));
     }
+
     @Override
     public void add(Screen screen, int x, int y) {
         label.setBounds(x, y, 270, 25);
