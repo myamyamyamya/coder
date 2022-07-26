@@ -10,7 +10,7 @@ import javax.swing.*;
 public class print extends Effect implements DetailEvent {
     private DString string;
     public print(Screen screen){
-        EffectIcon = new ImageIcon("C://Jongyeol/ProgramStart.png");
+        icon = new ImageIcon("C://Jongyeol/ProgramStart.png");
         string = new DString("String", this);
         detailList.add(string);
         this.screen = screen;

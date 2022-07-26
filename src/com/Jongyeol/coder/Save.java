@@ -1,7 +1,8 @@
 package com.Jongyeol.coder;
 
+import com.Jongyeol.coder.Code.Code;
 import com.Jongyeol.coder.Code.Event;
-import com.Jongyeol.coder.Code.EventList;
+import com.Jongyeol.coder.Code.CodeList;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,15 +12,16 @@ public class Save {
     public static void Save(){
         String code = "public class Main {\n";
         int TabAmount = 1;
-        for(Event event : EventList.Eventlist){
+        for(Event event : CodeList.Eventlist){
             for(int i = 0; i < TabAmount; i++){
                 code += "    ";
             }
-            code += event.prefix;
+            Code code1 = (Code) event;
+            code += code1.prefix;
             for(int i = 0; i < TabAmount; i++){
                 code += "    ";
             }
-            code += event.suffix;
+            code += code1.suffix;
         }
         code += "}";
         try {

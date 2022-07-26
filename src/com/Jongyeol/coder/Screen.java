@@ -2,7 +2,7 @@ package com.Jongyeol.coder;
 
 import com.Jongyeol.coder.Code.Code;
 import com.Jongyeol.coder.Code.Detail.DrawDetail;
-import com.Jongyeol.coder.Code.EventList;
+import com.Jongyeol.coder.Code.CodeList;
 import com.Jongyeol.coder.Code.EventType.ProgramStart;
 
 import javax.swing.*;
@@ -42,7 +42,7 @@ public class Screen extends JFrame {
         ProgramStart ps = new ProgramStart(this);
         ps.setLocation(320, 120);
         ps.ButtonCreate();
-        EventList.Eventlist.add(ps);
+        CodeList.Eventlist.add(ps);
         CreateSave();
         setSelectCode(new Code());
         DrawDetail.CodeSetting(this);

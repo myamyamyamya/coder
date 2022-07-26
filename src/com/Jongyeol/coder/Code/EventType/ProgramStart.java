@@ -10,7 +10,7 @@ import javax.swing.*;
 public class ProgramStart extends Event implements DetailEvent {
     private DString args;
     public ProgramStart(Screen screen){
-        EventIcon = new ImageIcon("C://Jongyeol/ProgramStart.png");
+        icon = new ImageIcon("C://Jongyeol/ProgramStart.png");
         args = new DString("String[]", "args", this);
         detailList.add(args);
         under = true;
