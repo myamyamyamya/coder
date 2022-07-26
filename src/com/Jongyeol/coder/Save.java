@@ -26,6 +26,9 @@ public class Save {
             OutputStream output = new FileOutputStream("C://Jongyeol/Main.java");
             byte[] by = code.getBytes();
             output.write(by);
+            OutputStream output2 = new FileOutputStream("C://Jongyeol/start.bat");
+            byte[] by2 = "@echo off\ntitle Java\njava.exe C:\\Jongyeol\\Main.java\npause\nexit".getBytes();
+            output2.write(by2);
             Runtime.getRuntime().exec("cmd /c start C:\\Jongyeol\\start.bat");
         } catch (IOException e) {
             e.getStackTrace();

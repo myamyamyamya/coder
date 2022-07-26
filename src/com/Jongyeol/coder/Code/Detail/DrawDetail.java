@@ -14,22 +14,10 @@ public class DrawDetail {
     public static void Reload(Screen screen) {
         int x = 1305;
         int y = 61;
-        if(lastCode != null){
-            for(Detail detail : lastCode.detailList){
-                if(detail.DetailID == 0){
-                    DString dString = (DString) detail;
-                    dString.remove(screen);
-                }
-            }
-        }
+        if(lastCode != null) for(Detail detail : lastCode.detailList) detail.remove(screen);
         Code code = screen.getSelectCode();
         lastCode = code;
-        for(Detail detail : code.detailList){
-            if(detail.DetailID == 0){
-                DString dString = (DString) detail;
-                dString.add(screen, x, y);
-            }
-        }
+        for(Detail detail : code.detailList) detail.add(screen, x, y);
     }
     public static void CodeSetting(Screen screen) {
         saveButton.setVisible(true);
@@ -57,13 +45,6 @@ public class DrawDetail {
         screen.add(saveButton);
     }
     private static void Save() {
-        if(lastCode != null){
-            for(Detail detail : lastCode.detailList){
-                if(detail.DetailID == 0){
-                    DString dString = (DString) detail;
-                    dString.Save();
-                }
-            }
-        }
+        if(lastCode != null) for(Detail detail : lastCode.detailList) detail.Save();
     }
 }

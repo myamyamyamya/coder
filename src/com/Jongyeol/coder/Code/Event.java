@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
 
 public class Event extends Code {
     public Icon EventIcon;
-    public byte EventId;
     public int x;
     public int y;
     public Screen screen;
@@ -18,7 +17,6 @@ public class Event extends Code {
     public String suffix;
     public Event event;
     public Event(){
-        CodeId = 1;
         event = this;
     }
     public void setLocation(int x, int y){

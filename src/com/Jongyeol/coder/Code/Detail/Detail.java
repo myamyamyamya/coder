@@ -1,6 +1,13 @@
 package com.Jongyeol.coder.Code.Detail;
 
-public class Detail {
-    public String Name;
-    public byte DetailID;
+import com.Jongyeol.coder.Screen;
+
+public interface Detail {
+    String Name = null;
+
+    void add(Screen screen, int x, int y);
+
+    void remove(Screen screen);
+
+    void Save();
 }

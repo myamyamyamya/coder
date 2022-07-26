@@ -1,4 +1,24 @@
 package com.Jongyeol.coder.Code.EffectType;
 
-public class print {
+import com.Jongyeol.coder.Code.Detail.DString;
+import com.Jongyeol.coder.Code.Detail.event.DStringEvent;
+import com.Jongyeol.coder.Code.Effect;
+import com.Jongyeol.coder.Screen;
+
+import javax.swing.*;
+
+public class print extends Effect implements DStringEvent {
+    private DString string;
+    public print(Screen screen){
+        EffectIcon = new ImageIcon("C://Jongyeol/ProgramStart.png");
+        string = new DString("String", this);
+        detailList.add(string);
+        this.screen = screen;
+        prefix = "System.out.println(\"" + string.getString() + "\")";
+    }
+
+    @Override
+    public void Save() {
+        prefix = "System.out.println(\"" + string.getString() + "\")";
+    }
 }
