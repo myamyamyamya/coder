@@ -9,24 +9,17 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class Save {
+    private static String codeFile;
+    private static int TabAmount;
     public static void Save(){
-        String code = "public class Main {\n";
-        int TabAmount = 1;
-        for(Event event : CodeList.Eventlist){
-            for(int i = 0; i < TabAmount; i++){
-                code += "    ";
-            }
-            Code code1 = (Code) event;
-            code += code1.prefix;
-            for(int i = 0; i < TabAmount; i++){
-                code += "    ";
-            }
-            code += code1.suffix;
-        }
-        code += "}";
+        codeFile = "public class Main {\n";
+        TabAmount = 1;
+        for(Event event : CodeList.Eventlist) codeParsing(event);
+        codeFile += "}";
+        System.out.println(codeFile);
         try {
             OutputStream output = new FileOutputStream("C://Jongyeol/Main.java");
-            byte[] by = code.getBytes();
+            byte[] by = codeFile.getBytes();
             output.write(by);
             OutputStream output2 = new FileOutputStream("C://Jongyeol/start.bat");
             byte[] by2 = "@echo off\ntitle Java\njava.exe C:\\Jongyeol\\Main.java\npause\nexit".getBytes();
@@ -34,6 +27,17 @@ public class Save {
             Runtime.getRuntime().exec("cmd /c start C:\\Jongyeol\\start.bat");
         } catch (IOException e) {
             e.getStackTrace();
+        }
+    }
+    private static void codeParsing(Code code) {
+        codeFile += "    ".repeat(TabAmount);
+        codeFile += code.prefix;
+        TabAmount += code.tab;
+        if(code.underCode != null) codeParsing(code.underCode);
+        TabAmount -= code.tab;
+        if(code.suffix != null){
+            codeFile += "    ".repeat(TabAmount);
+            codeFile += code.suffix;
         }
     }
 }

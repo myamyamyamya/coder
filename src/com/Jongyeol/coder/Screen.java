@@ -20,6 +20,7 @@ public class Screen extends JFrame {
     private ImageIcon save1 = new ImageIcon(Main.class.getResource("../../../resource/save1.png"));
     private ImageIcon save2 = new ImageIcon(Main.class.getResource("../../../resource/save2.png"));
     private JButton save = new JButton(save1);
+    public Code noneCode = new Code();
 
     public void setSelectCode(Code selectCode) {
         this.selectCode = selectCode;
@@ -44,8 +45,9 @@ public class Screen extends JFrame {
         ps.ButtonCreate();
         CodeList.Eventlist.add(ps);
         CreateSave();
-        setSelectCode(new Code());
+        setSelectCode(noneCode);
         DrawDetail.CodeSetting(this);
+        CodeList.AddListButton(this);
     }
     public void paint(Graphics g) {
         ScreenImage = createImage(1600, 900);
