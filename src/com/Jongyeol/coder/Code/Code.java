@@ -67,7 +67,7 @@ public class Code {
                     CodeList.AllList.add(code);
                 } else if(upCode != null){
                     upCode.underCode = null;
-                    underCode = null;
+                    upCode = null;
                 }
             }
             @Override
@@ -94,8 +94,8 @@ public class Code {
                         int calX = code1.x - x;
                         if(calX < 0) calX = calX * -1;
                         int calY = code1.y - y;
-                        if(calX < 0) calY = calY * -1;
-                        if(calX <= 100 && calY <= 100){
+                        if(calY < 0) calY = calY * -1;
+                        if(calX <= 80 && calY <= 80){
                             upCode = code1;
                             code1.underCode = code;
                             x = code1.x;
