@@ -26,6 +26,7 @@ public class Code {
     private int screenX, screenY;
     public Code upCode, underCode;
     public byte tab;
+    private JButton button;
 
     public void setList(boolean list) {
         this.list = list;
@@ -35,12 +36,19 @@ public class Code {
     public void setLocation(int x, int y){
         this.x = x;
         this.y = y;
+        if(button != null){
+            loadLocation();
+        }
+    }
+    public void loadLocation() {
+        button.setBounds(x, y, 190, 50);
+        if(underCode != null) underCode.setLocation(x, y + 42);
     }
     public void ButtonCreate(){
         if(!list) CodeList.AllList.add(this);
-        JButton button = new JButton(icon);
+        button = new JButton(icon);
         button.setVisible(true);
-        button.setBounds(x, y, 190, 50);
+        loadLocation();
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);
         button.setFocusPainted(false);
@@ -100,7 +108,7 @@ public class Code {
                             code1.underCode = code;
                             x = code1.x;
                             y = code1.y + 42;
-                            button.setBounds(x, y, 190, 50);
+                            loadLocation();
                         }
                     }
                 }
@@ -113,7 +121,7 @@ public class Code {
                 y += e.getYOnScreen() - screenY;
                 screenX = e.getXOnScreen();
                 screenY = e.getYOnScreen();
-                button.setBounds(x, y, 190, 50);
+                loadLocation();
             }
         });
         screen.add(button);
