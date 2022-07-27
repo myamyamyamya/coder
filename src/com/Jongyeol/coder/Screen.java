@@ -23,6 +23,7 @@ public class Screen extends JFrame {
     public Code noneCode = new Code();
 
     public void setSelectCode(Code selectCode) {
+        DrawDetail.Save();
         this.selectCode = selectCode;
         DrawDetail.Reload(this);
     }
@@ -46,7 +47,6 @@ public class Screen extends JFrame {
         CodeList.Eventlist.add(ps);
         CreateSave();
         setSelectCode(noneCode);
-        DrawDetail.CodeSetting(this);
         CodeList.AddListButton(this);
     }
     public void paint(Graphics g) {

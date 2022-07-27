@@ -1,6 +1,7 @@
 package com.Jongyeol.coder;
 
 import com.Jongyeol.coder.Code.Code;
+import com.Jongyeol.coder.Code.Detail.DrawDetail;
 import com.Jongyeol.coder.Code.Event;
 import com.Jongyeol.coder.Code.CodeList;
 
@@ -12,6 +13,7 @@ public class Save {
     private static String codeFile;
     private static int TabAmount;
     public static void Save(){
+        DrawDetail.Save();
         codeFile = "public class Main {\n";
         TabAmount = 1;
         for(Event event : CodeList.Eventlist) codeParsing(event);

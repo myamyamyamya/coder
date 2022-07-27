@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 
 public class DrawDetail {
     private static Code lastCode = null;
-    private static JButton saveButton = new JButton("데이터 저장하기");
     public static void Reload(Screen screen) {
         int x = 1305;
         int y = 61;
@@ -19,32 +18,7 @@ public class DrawDetail {
         lastCode = code;
         for(Detail detail : code.detailList) detail.add(screen, x, y);
     }
-    public static void CodeSetting(Screen screen) {
-        saveButton.setVisible(true);
-        saveButton.setBounds(1355, 800, 180, 30);
-        saveButton.setFont(new Font("Korean", Font.PLAIN, 20));
-        saveButton.setBorderPainted(false);
-        saveButton.setContentAreaFilled(true);
-        saveButton.setFocusPainted(false);
-        saveButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                saveButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                saveButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                Save();
-            }
-        });
-        screen.add(saveButton);
-    }
-    private static void Save() {
+    public static void Save() {
         if(lastCode != null) for(Detail detail : lastCode.detailList) detail.Save();
     }
 }
