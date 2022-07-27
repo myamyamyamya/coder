@@ -15,7 +15,7 @@ public class Code {
     public ArrayList<Detail> detailList = new ArrayList<Detail>();
     private Code code;
     public String prefix, suffix;
-    public Code(){
+    public Code() {
         code = this;
     }
     public int x, y;
@@ -36,9 +36,7 @@ public class Code {
     public void setLocation(int x, int y){
         this.x = x;
         this.y = y;
-        if(button != null){
-            loadLocation();
-        }
+        if(button != null) loadLocation();
     }
     public void loadLocation() {
         button.setBounds(x, y, 190, 50);
@@ -96,9 +94,7 @@ public class Code {
                 }
                 if(up){
                     for(Code code1 :CodeList.AllList){
-                        if(!code1.under || code1 == code || code1.underCode != null){
-                            continue;
-                        }
+                        if(!code1.under || code1 == code || code1.underCode != null || code1 == underCode) continue;
                         int calX = code1.x - x;
                         if(calX < 0) calX = calX * -1;
                         int calY = code1.y - y;
@@ -109,6 +105,7 @@ public class Code {
                             x = code1.x;
                             y = code1.y + 42;
                             loadLocation();
+                            return;
                         }
                     }
                 }
