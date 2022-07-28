@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class VariableSetting extends JFrame {
     public ArrayList<Variable> variablelist = new ArrayList<Variable>();
-    public VariableSetting(){
+    public VariableSetting() {
         setTitle("Coder Variables");
         setSize(500, 700);
         setResizable(false);

@@ -1,10 +1,15 @@
-package com.Jongyeol.coder;
+package com.Jongyeol.coder.Save;
 
 import com.Jongyeol.coder.Code.Code;
 import com.Jongyeol.coder.Code.Detail.DrawDetail;
 import com.Jongyeol.coder.Code.Event;
 import com.Jongyeol.coder.Code.CodeList;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileView;
+import javax.swing.plaf.FileChooserUI;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -12,19 +17,23 @@ import java.io.OutputStream;
 public class Save {
     private static String codeFile;
     private static int TabAmount;
+    public static String saveLocation = "C:\\Jongyeol\\Main.java";
     public static void Save(){
         DrawDetail.Save();
-        codeFile = "public class Main {\n";
+        String[] sts = saveLocation.replace("\\", "/").split("/");
+        String className = sts[sts.length - 1].replace(".java", "");
+        codeFile = "public class " + className + " {\n";
         TabAmount = 1;
         for(Event event : CodeList.Eventlist) codeParsing(event);
         codeFile += "}";
         System.out.println(codeFile);
         try {
-            OutputStream output = new FileOutputStream("C://Jongyeol/Main.java");
+            OutputStream output = new FileOutputStream(saveLocation);
             byte[] by = codeFile.getBytes();
             output.write(by);
             OutputStream output2 = new FileOutputStream("C://Jongyeol/start.bat");
-            byte[] by2 = "@echo off\ntitle Java\njava.exe C:\\Jongyeol\\Main.java\npause\nexit".getBytes();
+            String st = "@echo off\ntitle Java\njava.exe " + saveLocation + "\npause\nexit";
+            byte[] by2 = st.getBytes();
             output2.write(by2);
             Runtime.getRuntime().exec("cmd /c start C:\\Jongyeol\\start.bat");
         } catch (IOException e) {
