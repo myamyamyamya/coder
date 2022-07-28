@@ -3,11 +3,6 @@ package com.Jongyeol.coder.Code.Detail;
 import com.Jongyeol.coder.Code.Code;
 import com.Jongyeol.coder.Screen;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 public class DrawDetail {
     private static Code lastCode = null;
     public static void Reload(Screen screen) {

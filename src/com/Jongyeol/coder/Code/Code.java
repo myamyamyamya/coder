@@ -42,6 +42,23 @@ public class Code {
         button.setBounds(x, y, 190, 50);
         if(underCode != null) underCode.setLocation(x, y + 42);
     }
+    public void removeCode() {
+        screen.remove(button);
+        CodeList.AllList.remove(code);
+        if(code instanceof Event) {
+            CodeList.Eventlist.remove(code);
+            if(code instanceof ProgramStart) {
+                ProgramStart ps = new ProgramStart(screen);
+                ps.setLocation(320, 120);
+                ps.ButtonCreate();
+                CodeList.Eventlist.add(ps);
+            }
+        }
+        if(underCode != null){
+            underCode.removeCode();
+        }
+        screen.setSelectCode(screen.noneCode);
+    }
     public void ButtonCreate(){
         if(!list) CodeList.AllList.add(this);
         button = new JButton(icon);
@@ -78,20 +95,7 @@ public class Code {
             }
             @Override
             public void mouseReleased(MouseEvent e) {
-                if(x <= 190 || x >= 1200 || y <= 40) {
-                    screen.remove(button);
-                    CodeList.AllList.remove(code);
-                    if(code instanceof Event) {
-                        CodeList.Eventlist.remove(code);
-                        if(code instanceof ProgramStart) {
-                            ProgramStart ps = new ProgramStart(screen);
-                            ps.setLocation(320, 120);
-                            ps.ButtonCreate();
-                            CodeList.Eventlist.add(ps);
-                        }
-                    }
-                    screen.setSelectCode(screen.noneCode);
-                }
+                if(x <= 190 || x >= 1200 || y <= 40) removeCode();
                 if(up){
                     for(Code code1 :CodeList.AllList){
                         if(!code1.under || code1 == code || code1.underCode != null || code1 == underCode) continue;
