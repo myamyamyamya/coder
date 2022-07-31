@@ -16,7 +16,7 @@ public class Save {
     public static void Save(){
         DrawDetail.Save();
         String[] sts = saveLocation.replace("\\", "/").split("/");
-        String className = sts[sts.length - 1].replace(".java", "");
+        String className = sts[sts.length - 1].replace(" ", "_").replace(".java", "");
         codeFile = "public class " + className + " {\n";
         TabAmount = 1;
         for(Event event : CodeList.Eventlist) codeParsing(event);
@@ -27,7 +27,7 @@ public class Save {
             byte[] by = codeFile.getBytes();
             output.write(by);
             OutputStream output2 = new FileOutputStream("C://Jongyeol/start.bat");
-            String st = "@echo off\ntitle Java\njava.exe " + saveLocation + "\npause\nexit";
+            String st = "@echo off\ntitle " + className + "\njava.exe \"" + saveLocation + "\"\npause\nexit";
             byte[] by2 = st.getBytes();
             output2.write(by2);
             Runtime.getRuntime().exec("cmd /c start C:\\Jongyeol\\start.bat");
@@ -37,13 +37,13 @@ public class Save {
     }
     private static void codeParsing(Code code) {
         codeFile += "    ".repeat(TabAmount);
-        codeFile += code.prefix;
-        TabAmount += code.tab;
+        codeFile += code.java.getPrefix();
+        TabAmount += code.java.getTab();
         if(code.underCode != null) codeParsing(code.underCode);
-        TabAmount -= code.tab;
-        if(code.suffix != null){
+        TabAmount -= code.java.getTab();
+        if(code.java.getSuffix() != null) {
             codeFile += "    ".repeat(TabAmount);
-            codeFile += code.suffix;
+            codeFile += code.java.getSuffix();
         }
     }
 }

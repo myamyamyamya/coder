@@ -2,6 +2,7 @@ package com.Jongyeol.coder.Code;
 
 import com.Jongyeol.coder.Code.Detail.Detail;
 import com.Jongyeol.coder.Code.EventType.ProgramStart;
+import com.Jongyeol.coder.Code.Language.Java;
 import com.Jongyeol.coder.Screen;
 
 import javax.swing.*;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 public class Code {
     public ArrayList<Detail> detailList = new ArrayList<Detail>();
     private Code code;
-    public String prefix, suffix, name;
+    public String name;
     public Code() {
         code = this;
     }
@@ -25,8 +26,8 @@ public class Code {
     public boolean under;
     private int screenX, screenY;
     public Code upCode, underCode;
-    public byte tab;
     private JButton button;
+    public Java java;
 
     public void setList(boolean list) {
         this.list = list;
