@@ -4,7 +4,6 @@ import com.Jongyeol.coder.Code.Code;
 import com.Jongyeol.coder.Code.Detail.DrawDetail;
 import com.Jongyeol.coder.Code.CodeList;
 import com.Jongyeol.coder.Code.EventType.ProgramStart;
-import com.Jongyeol.coder.Save.Save;
 import com.Jongyeol.coder.Save.SaveScreen;
 import com.Jongyeol.coder.Variables.VariableSetting;
 

@@ -17,6 +17,7 @@ public class ProgramStart extends Event implements DetailEvent {
         under = true;
         up = false;
         tab = 1;
+        name = "프로그램이 시작되었을때";
         this.screen = screen;
         prefix = "public static void main(String[] " + args.getString() + "){\n";
         suffix = "}\n";

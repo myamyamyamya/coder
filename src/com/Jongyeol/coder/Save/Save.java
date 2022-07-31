@@ -5,11 +5,6 @@ import com.Jongyeol.coder.Code.Detail.DrawDetail;
 import com.Jongyeol.coder.Code.Event;
 import com.Jongyeol.coder.Code.CodeList;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileView;
-import javax.swing.plaf.FileChooserUI;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;

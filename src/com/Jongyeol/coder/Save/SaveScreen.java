@@ -21,7 +21,7 @@ public class SaveScreen extends JFrame {
     }
     public void CreateItem() {
         JButton save = new JButton("저장");
-        save.setBounds(220, 600, 60, 30);
+        save.setBounds(220, 610, 60, 30);
         save.setBorderPainted(true);
         save.setContentAreaFilled(true);
         save.setFocusPainted(false);
@@ -71,6 +71,14 @@ public class SaveScreen extends JFrame {
             }
         });
         add(locationC);
+        String[] st = {"Java", "C"};
+        JComboBox<String> Jcombo = new JComboBox<>(st);
+        Jcombo.setBounds(60, 80, 120, 30);
+        add(Jcombo);
+        JLabel setlang = new JLabel("언어 선택");
+        setlang.setBounds(0, 80, 60, 30);
+        add(setlang);
+
     }
     public void saveShow(){
         setVisible(true);

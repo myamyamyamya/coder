@@ -17,6 +17,7 @@ public class Print extends Effect implements DetailEvent {
         under = true;
         up = true;
         tab = 0;
+        name = "메시지 띄우기";
         this.screen = screen;
         prefix = "System.out.println(\"" + string.getString() + "\");\n";
     }

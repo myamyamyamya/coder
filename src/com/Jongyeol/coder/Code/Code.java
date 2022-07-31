@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Code {
     public ArrayList<Detail> detailList = new ArrayList<Detail>();
     private Code code;
-    public String prefix, suffix;
+    public String prefix, suffix, name;
     public Code() {
         code = this;
     }
