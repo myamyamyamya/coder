@@ -3,6 +3,7 @@ package com.Jongyeol.coder.Code.EffectType;
 import com.Jongyeol.coder.Code.Detail.DString;
 import com.Jongyeol.coder.Code.Detail.DetailEvent;
 import com.Jongyeol.coder.Code.Effect;
+import com.Jongyeol.coder.Code.Language.Java;
 import com.Jongyeol.coder.Main;
 import com.Jongyeol.coder.Screen;
 
@@ -16,13 +17,13 @@ public class Print extends Effect implements DetailEvent {
         detailList.add(string);
         under = true;
         up = true;
-        tab = 0;
+        java = new Java("System.out.println(\"" + string.getString() + "\");\n" + "){\n", (byte) 0);
+        name = "메시지 띄우기";
         this.screen = screen;
-        prefix = "System.out.println(\"" + string.getString() + "\");\n";
     }
 
     @Override
     public void Save() {
-        prefix = "System.out.println(\"" + string.getString() + "\");\n";
+        java.setPrefix("System.out.println(\"" + string.getString() + "\");\n");
     }
 }

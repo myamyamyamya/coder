@@ -4,6 +4,8 @@ import com.Jongyeol.coder.Code.Code;
 import com.Jongyeol.coder.Code.Detail.DrawDetail;
 import com.Jongyeol.coder.Code.CodeList;
 import com.Jongyeol.coder.Code.EventType.ProgramStart;
+import com.Jongyeol.coder.Save.SaveScreen;
+import com.Jongyeol.coder.Variables.VariableSetting;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,15 +14,18 @@ import java.awt.event.MouseEvent;
 
 public class Screen extends JFrame {
     private Image ScreenImage;
-    private Image background = new ImageIcon(Main.class.getResource("../../../resource/BackScreen.png")).getImage();
     private Image Line = new ImageIcon(Main.class.getResource("../../../resource/Line.png")).getImage();
     private Image Line2 = new ImageIcon(Main.class.getResource("../../../resource/Line2.png")).getImage();
-    private ImageIcon None = new ImageIcon(Main.class.getResource("../../../resource/None.png"));
     private Graphics screenGraphics;
     private ImageIcon save1 = new ImageIcon(Main.class.getResource("../../../resource/save1.png"));
     private ImageIcon save2 = new ImageIcon(Main.class.getResource("../../../resource/save2.png"));
     private JButton save = new JButton(save1);
+    private ImageIcon variables1 = new ImageIcon(Main.class.getResource("../../../resource/Variables1.jpg"));
+    private ImageIcon variables2 = new ImageIcon(Main.class.getResource("../../../resource/Variables2.jpg"));
+    private JButton variables = new JButton(variables1);
     public Code noneCode = new Code();
+    private VariableSetting variableSetting = new VariableSetting();
+    private SaveScreen saveScreen = new SaveScreen();
 
     public void setSelectCode(Code selectCode) {
         DrawDetail.Save();
@@ -45,7 +50,7 @@ public class Screen extends JFrame {
         ps.setLocation(320, 120);
         ps.ButtonCreate();
         CodeList.Eventlist.add(ps);
-        CreateSave();
+        CreateButton();
         setSelectCode(noneCode);
         CodeList.AddListButton(this);
     }
@@ -63,7 +68,6 @@ public class Screen extends JFrame {
         g.drawImage(Line, 300, 0, null);
         g.drawImage(Line, 1300, 91, null);
         g.drawImage(Line2, 300, 91, null);
-        //Location.Location();
         try {
             Thread.sleep(5);
         } catch (Exception e){
@@ -71,7 +75,7 @@ public class Screen extends JFrame {
         }
         this.repaint();
     }
-    public void CreateSave(){
+    public void CreateButton(){
         save.setBounds(1525, 0, 60, 60);
         save.setBorderPainted(false);
         save.setContentAreaFilled(false);
@@ -91,9 +95,32 @@ public class Screen extends JFrame {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                Save.Save();
+                saveScreen.saveShow();
             }
         });
         add(save);
+        variables.setBounds(1465, 0, 60, 60);
+        variables.setBorderPainted(false);
+        variables.setContentAreaFilled(false);
+        variables.setFocusPainted(false);
+        variables.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                variables.setIcon(variables2);
+                variables.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                variables.setIcon(variables1);
+                variables.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                variableSetting.variablesShow();
+            }
+        });
+        add(variables);
     }
 }

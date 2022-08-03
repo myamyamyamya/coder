@@ -1,4 +1,4 @@
-package com.Jongyeol.coder;
+package com.Jongyeol.coder.Save;
 
 import com.Jongyeol.coder.Code.Code;
 import com.Jongyeol.coder.Code.Detail.DrawDetail;
@@ -12,19 +12,23 @@ import java.io.OutputStream;
 public class Save {
     private static String codeFile;
     private static int TabAmount;
+    public static String saveLocation = "C:\\Jongyeol\\Main.java";
     public static void Save(){
         DrawDetail.Save();
-        codeFile = "public class Main {\n";
+        String[] sts = saveLocation.replace("\\", "/").split("/");
+        String className = sts[sts.length - 1].replace(" ", "_").replace(".java", "");
+        codeFile = "public class " + className + " {\n";
         TabAmount = 1;
         for(Event event : CodeList.Eventlist) codeParsing(event);
         codeFile += "}";
         System.out.println(codeFile);
         try {
-            OutputStream output = new FileOutputStream("C://Jongyeol/Main.java");
+            OutputStream output = new FileOutputStream(saveLocation);
             byte[] by = codeFile.getBytes();
             output.write(by);
             OutputStream output2 = new FileOutputStream("C://Jongyeol/start.bat");
-            byte[] by2 = "@echo off\ntitle Java\njava.exe C:\\Jongyeol\\Main.java\npause\nexit".getBytes();
+            String st = "@echo off\ntitle " + className + "\njava.exe \"" + saveLocation + "\"\npause\nexit";
+            byte[] by2 = st.getBytes();
             output2.write(by2);
             Runtime.getRuntime().exec("cmd /c start C:\\Jongyeol\\start.bat");
         } catch (IOException e) {
@@ -33,13 +37,13 @@ public class Save {
     }
     private static void codeParsing(Code code) {
         codeFile += "    ".repeat(TabAmount);
-        codeFile += code.prefix;
-        TabAmount += code.tab;
+        codeFile += code.java.getPrefix();
+        TabAmount += code.java.getTab();
         if(code.underCode != null) codeParsing(code.underCode);
-        TabAmount -= code.tab;
-        if(code.suffix != null){
+        TabAmount -= code.java.getTab();
+        if(code.java.getSuffix() != null) {
             codeFile += "    ".repeat(TabAmount);
-            codeFile += code.suffix;
+            codeFile += code.java.getSuffix();
         }
     }
 }
