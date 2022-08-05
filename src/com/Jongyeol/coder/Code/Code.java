@@ -2,7 +2,7 @@ package com.Jongyeol.coder.Code;
 
 import com.Jongyeol.coder.Code.Detail.Detail;
 import com.Jongyeol.coder.Code.EventType.ProgramStart;
-import com.Jongyeol.coder.Code.Language.Java;
+import com.Jongyeol.coder.Code.Language.LanguageCode;
 import com.Jongyeol.coder.Screen;
 
 import javax.swing.*;
@@ -27,7 +27,8 @@ public class Code {
     private int screenX, screenY;
     public Code upCode, underCode;
     private JButton button;
-    public Java java;
+    public LanguageCode java;
+    public LanguageCode c;
 
     public void setList(boolean list) {
         this.list = list;

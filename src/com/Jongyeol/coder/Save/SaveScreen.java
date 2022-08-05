@@ -1,7 +1,11 @@
 package com.Jongyeol.coder.Save;
 
+import com.Jongyeol.coder.Code.Language.Language;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -10,6 +14,7 @@ public class SaveScreen extends JFrame {
     private SaveScreen screen = this;
     private JFileChooser fileChooser = new JFileChooser(Save.saveLocation);
     private JLabel location = new JLabel("저장 위치 : " + Save.saveLocation);
+    private Language selectedLanguage = Language.Java;
     public SaveScreen() {
         setTitle("Coder Save");
         setSize(500, 700);
@@ -45,8 +50,11 @@ public class SaveScreen extends JFrame {
             public void mousePressed(MouseEvent e) {
                 Boolean A = true;
                 for(FileFilter f : fileChooser.getChoosableFileFilters()){
-                    if(f.getDescription() == "All Files") fileChooser.removeChoosableFileFilter(f);
-                    if(f.getDescription() == "*.java") A = false;
+                    if(f.getDescription().equals(selectedLanguage.getExtensions())) {
+                        A = false;
+                    } else {
+                        fileChooser.removeChoosableFileFilter(f);
+                    }
                 }
                 if(A){
                     fileChooser.setFileFilter(new FileFilter() {
@@ -57,14 +65,23 @@ public class SaveScreen extends JFrame {
 
                         @Override
                         public String getDescription() {
-                            return "*.java";
+                            return selectedLanguage.getExtensions();
                         }
                     });
                 }
                 fileChooser.showSaveDialog(screen);
+                if(fileChooser.getSelectedFile() == null){
+                    JOptionPane.showMessageDialog(getParent(), "파일이 지정되지 않았습니다.", "오류", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                String fileName = fileChooser.getSelectedFile().getName().toLowerCase();
+                if(fileName.contains(" ")){
+                    JOptionPane.showMessageDialog(getParent(), "파일에 이름이 잘못 설정되어있습니다.", "오류", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 Save.saveLocation = fileChooser.getSelectedFile().getPath();
-                if(!Save.saveLocation.contains(".java")){
-                    Save.saveLocation += ".java";
+                if(!fileName.toLowerCase().contains(selectedLanguage.getExtensions())){
+                    Save.saveLocation += selectedLanguage.getExtensions();
                 }
                 location.setText("저장 위치 : " + Save.saveLocation);
                 System.out.println(Save.saveLocation);
@@ -72,9 +89,22 @@ public class SaveScreen extends JFrame {
         });
         add(locationC);
         String[] st = {"Java", "C"};
-        JComboBox<String> Jcombo = new JComboBox<>(st);
-        Jcombo.setBounds(60, 80, 120, 30);
-        add(Jcombo);
+        JComboBox<String> jcombo = new JComboBox<>(st);
+        jcombo.setBounds(60, 80, 120, 30);
+        add(jcombo);
+        jcombo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String before = selectedLanguage.getExtensions();
+                if(jcombo.getSelectedItem().toString().equals("Java")) {
+                    selectedLanguage = Language.Java;
+                } else if(jcombo.getSelectedItem().toString().equals("C")) {
+                    selectedLanguage = Language.C;
+                }
+                Save.saveLocation = Save.saveLocation.replaceAll(before, selectedLanguage.getExtensions());
+                location.setText("저장 위치 : " + Save.saveLocation);
+            }
+        });
         JLabel setlang = new JLabel("언어 선택");
         setlang.setBounds(0, 80, 60, 30);
         add(setlang);
