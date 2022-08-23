@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.ArrayList;
 
 public class SaveScreen extends JFrame {
     private SaveScreen screen = this;
@@ -33,7 +34,7 @@ public class SaveScreen extends JFrame {
         save.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                Save.Save();
+                Save.Save(selectedLanguage);
             }
         });
         add(save);
@@ -88,7 +89,11 @@ public class SaveScreen extends JFrame {
             }
         });
         add(locationC);
-        String[] st = {"Java", "C"};
+        ArrayList<String> arrayList = new ArrayList<>();
+        for(Language language : Language.values()){
+            arrayList.add(language.name());
+        }
+        String[] st = arrayList.toArray(new String[0]);
         JComboBox<String> jcombo = new JComboBox<>(st);
         jcombo.setBounds(60, 80, 120, 30);
         add(jcombo);
@@ -96,11 +101,8 @@ public class SaveScreen extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String before = selectedLanguage.getExtensions();
-                if(jcombo.getSelectedItem().toString().equals("Java")) {
-                    selectedLanguage = Language.Java;
-                } else if(jcombo.getSelectedItem().toString().equals("C")) {
-                    selectedLanguage = Language.C;
-                }
+                selectedLanguage = Language.valueOf(jcombo.getSelectedItem().toString());
+                System.out.println(selectedLanguage.toString());
                 Save.saveLocation = Save.saveLocation.replaceAll(before, selectedLanguage.getExtensions());
                 location.setText("저장 위치 : " + Save.saveLocation);
             }

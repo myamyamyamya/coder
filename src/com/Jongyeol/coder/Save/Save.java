@@ -4,6 +4,8 @@ import com.Jongyeol.coder.Code.Code;
 import com.Jongyeol.coder.Code.Detail.DrawDetail;
 import com.Jongyeol.coder.Code.Event;
 import com.Jongyeol.coder.Code.CodeList;
+import com.Jongyeol.coder.Code.Language.Language;
+import com.Jongyeol.coder.Code.Language.LanguageCode;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,14 +15,16 @@ public class Save {
     private static String codeFile;
     private static int TabAmount;
     public static String saveLocation = "C:\\Jongyeol\\Main.java";
-    public static void Save(){
+    public static void Save(Language language){
         DrawDetail.Save();
         String[] sts = saveLocation.replace("\\", "/").split("/");
         String className = sts[sts.length - 1].replace(" ", "_").replace(".java", "");
-        codeFile = "public class " + className + " {\n";
-        TabAmount = 1;
+        LanguageCode dCode = language.getDefaultCode();
+        codeFile = dCode.getPrefix();
+        TabAmount = dCode.getTab();
         for(Event event : CodeList.Eventlist) codeParsing(event);
-        codeFile += "}";
+        codeFile += dCode.getSuffix();
+        codeFile = codeFile.replace("{class}", className);
         System.out.println(codeFile);
         try {
             OutputStream output = new FileOutputStream(saveLocation);

@@ -1,7 +1,7 @@
 package com.Jongyeol.coder.Code.Language;
 
 public enum Language {
-    Java(".java", new LanguageCode("public class \" + className + \" {\\n", "}", (byte)1)),
+    Java(".java", new LanguageCode("public class {class} {\n", "}", (byte)1)),
     C(".c", new LanguageCode(""));
     Language(String extensions, LanguageCode defaultCode){
         this.extensions = extensions;
