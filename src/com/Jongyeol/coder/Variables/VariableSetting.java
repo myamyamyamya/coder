@@ -18,12 +18,9 @@ public class VariableSetting extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(null);
-        JLabel background = new JLabel(new ImageIcon(Main.class.getResource("../../../resource/Variables background.jpg")));
-        background.setVisible(true);
-        background.setBounds(0, 0, 500, 700);
         JButton addVariables = new JButton(add1);
         addVariables.setVisible(true);
-        addVariables.setBounds(150, 0, 340, 100);
+        addVariables.setBounds(160, 0, 170, 50);
         addVariables.setBorderPainted(false);
         addVariables.setContentAreaFilled(false);
         addVariables.setFocusPainted(false);
