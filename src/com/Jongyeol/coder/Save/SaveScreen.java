@@ -49,7 +49,7 @@ public class SaveScreen extends JFrame {
         locationC.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                Boolean A = true;
+                boolean A = true;
                 for(FileFilter f : fileChooser.getChoosableFileFilters()){
                     if(f.getDescription().equals(selectedLanguage.getExtensions())) {
                         A = false;

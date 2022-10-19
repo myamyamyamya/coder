@@ -17,7 +17,7 @@ public class ProgramStart extends Event implements DetailEvent {
         detailList.add(args);
         under = true;
         up = false;
-        java = new LanguageCode("public static void main(String[] " + args.getString() + "){\n", "}\n", (byte) 1);
+        java = new LanguageCode("public static void main(String[] " + args.getString() + "){\n", "}\n", 1);
         name = "프로그램이 시작되었을때";
         this.screen = screen;
     }

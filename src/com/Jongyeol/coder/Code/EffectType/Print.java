@@ -17,7 +17,7 @@ public class Print extends Effect implements DetailEvent {
         detailList.add(string);
         under = true;
         up = true;
-        java = new LanguageCode("System.out.println(\"" + string.getString() + "\");\n" + "){\n", (byte) 0);
+        java = new LanguageCode("System.out.println(\"" + string.getString() + "\");\n" + "){\n", 0);
         name = "메시지 띄우기";
         this.screen = screen;
     }

@@ -31,7 +31,9 @@ public class Save {
             byte[] by = codeFile.getBytes();
             output.write(by);
             OutputStream output2 = new FileOutputStream("C://Jongyeol/start.bat");
-            String st = "@echo off\ntitle " + className + "\njava.exe \"" + saveLocation + "\"\npause\nexit";
+            String st = language.getStart();
+            st = st.replace("{class}", className);
+            st = st.replace("{FileLocation}", saveLocation);
             byte[] by2 = st.getBytes();
             output2.write(by2);
             Runtime.getRuntime().exec("cmd /c start C:\\Jongyeol\\start.bat");
