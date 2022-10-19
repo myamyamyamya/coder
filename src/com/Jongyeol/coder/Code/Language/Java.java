@@ -1,6 +1,6 @@
 package com.Jongyeol.coder.Code.Language;
 
-public class LanguageCode {
+public class Java {
     public String getPrefix() {
         return prefix;
     }
@@ -25,19 +25,18 @@ public class LanguageCode {
         this.tab = tab;
     }
 
-    private String prefix;
-    private String suffix;
+    private String prefix, suffix;
     private byte tab;
-    public LanguageCode(String prefix, String suffix, int tab){
+    public Java(String prefix, String suffix, byte tab){
         this.prefix = prefix;
         this.suffix = suffix;
-        this.tab = (byte) tab;
+        this.tab = tab;
     }
-    public LanguageCode(String prefix, int tab){
+    public Java(String prefix, byte tab){
         this.prefix = prefix;
-        this.tab = (byte) tab;
+        this.tab = tab;
     }
-    public LanguageCode(String prefix){
+    public Java(String prefix){
         this.prefix = prefix;
     }
 }
