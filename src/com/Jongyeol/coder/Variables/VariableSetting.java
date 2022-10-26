@@ -10,6 +10,9 @@ import java.util.ArrayList;
 public class VariableSetting extends JFrame {
     private ImageIcon add1 = new ImageIcon(Main.class.getResource("../../../resource/Variables add1.jpg"));
     private ImageIcon add2 = new ImageIcon(Main.class.getResource("../../../resource/Variables add2.jpg"));
+    private ImageIcon line = new ImageIcon(Main.class.getResource("../../../resource/Line.png"));
+    private ImageIcon line2 = new ImageIcon(Main.class.getResource("../../../resource/Line2.png"));
+
     public ArrayList<Variable> variablelist = new ArrayList<Variable>();
     public VariableSetting() {
         setTitle("Coder Variables");
@@ -24,6 +27,27 @@ public class VariableSetting extends JFrame {
         addVariables.setBorderPainted(false);
         addVariables.setContentAreaFilled(false);
         addVariables.setFocusPainted(false);
+
+        JLabel floor0 = new JLabel(line2);
+        floor0.setBounds(0,50,500,3);
+        floor0.setVisible(true);
+        add(floor0);
+
+        JLabel wall1 = new JLabel(line);
+        wall1.setBounds(100,50,3,650);
+        wall1.setVisible(true);
+        add(wall1);
+
+        JLabel wall2 = new JLabel(line);
+        wall2.setBounds(200,50,3,650);
+        wall2.setVisible(true);
+        add(wall2);
+
+        JLabel wall3 = new JLabel(line);
+        wall3.setBounds(450,50,3,650);
+        wall3.setVisible(true);
+        add(wall3);
+
         addVariables.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
