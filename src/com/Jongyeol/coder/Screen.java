@@ -12,6 +12,12 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * 메인 화면
+ *
+ * @author Jongyeol
+ * @author smalljjack
+ */
 public class Screen extends JFrame {
     private Image ScreenImage;
     private Image Line = new ImageIcon(Main.class.getResource("../../../resource/Line.png")).getImage();
@@ -26,18 +32,35 @@ public class Screen extends JFrame {
     public Code noneCode = new Code();
     private VariableSetting variableSetting = new VariableSetting();
     private SaveScreen saveScreen = new SaveScreen();
+    private Code selectCode;
 
+    /**
+     * 선택되어 있는 코드(블록) 설정
+     *
+     * @param selectCode 선택한 코드(블록)
+     * @author Jongyeol
+     */
     public void setSelectCode(Code selectCode) {
         DrawDetail.Save();
         this.selectCode = selectCode;
         DrawDetail.Reload(this);
     }
 
+    /**
+     * 선택되어 있는 코드(블록) 설정
+     *
+     * @return 선택되어 있는 코드(블록)
+     * @author Jongyeol
+     */
     public Code getSelectCode() {
         return selectCode;
     }
 
-    private Code selectCode;
+    /**
+     * 화면 설정 & 표시
+     *
+     * @author Jongyeol
+     */
     public Screen() {
         setTitle("Coder");
         setSize(1600, 900);
@@ -54,12 +77,27 @@ public class Screen extends JFrame {
         setSelectCode(noneCode);
         CodeList.AddListButton(this);
     }
+
+    /**
+     * 표시 그래픽
+     *
+     * @param g 그래픽
+     * @author Jongyeol
+     */
+    @Override
     public void paint(Graphics g) {
         ScreenImage = createImage(1600, 900);
         screenGraphics = ScreenImage.getGraphics();
         screenDraw((Graphics2D) screenGraphics);
         g.drawImage(ScreenImage, 0, 0, null);
     }
+
+    /**
+     * 그래픽 그리기
+     *
+     * @author Jongyeol
+     * @param g 그래픽 2D
+     */
     public void screenDraw(Graphics2D g) {
         g.setColor(Color.BLACK);
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
@@ -75,6 +113,12 @@ public class Screen extends JFrame {
         }
         this.repaint();
     }
+
+    /**
+     * 메인화면 기본적인 버튼 생성
+     *
+     * @author Jongyeol
+     */
     public void CreateButton(){
         save.setBounds(1525, 0, 60, 60);
         save.setBorderPainted(false);

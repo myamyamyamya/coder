@@ -12,13 +12,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 
+/**
+ * 코드 데이터
+ *
+ * @author Jongyeol
+ * @author smalljjack
+ */
 public class Code {
-    public ArrayList<Detail> detailList = new ArrayList<Detail>();
-    private Code code;
+    public ArrayList<Detail> detailList = new ArrayList<>();
     public String name;
-    public Code() {
-        code = this;
-    }
     public int x, y;
     public Icon icon;
     public Screen screen;
@@ -29,27 +31,52 @@ public class Code {
     private JButton button;
     public LanguageCode java;
     public LanguageCode c;
+    public boolean list = false;
 
+    /**
+     * 코드 목록에 있는 블록인지 설정
+     *
+     * @author Jongyeol
+     * @param list 코드 목록에 있는 블록인가
+     */
     public void setList(boolean list) {
         this.list = list;
     }
 
-    public boolean list = false;
+    /**
+     * 블록 위치 설정
+     *
+     * @author Jongyeol
+     * @param x x좌표
+     * @param y y좌표
+     */
     public void setLocation(int x, int y){
         this.x = x;
         this.y = y;
         if(button != null) loadLocation();
     }
+
+    /**
+     * 위치 로딩
+     *
+     * @author Jongyeol
+     */
     public void loadLocation() {
         button.setBounds(x, y, 190, 50);
         if(underCode != null) underCode.setLocation(x, y + 42);
     }
+
+    /**
+     * 해당 코드 제거
+     *
+     * @author Jongyeol
+     */
     public void removeCode() {
         screen.remove(button);
-        CodeList.AllList.remove(code);
-        if(code instanceof Event) {
-            CodeList.Eventlist.remove(code);
-            if(code instanceof ProgramStart) {
+        CodeList.AllList.remove(this);
+        if(this instanceof Event) {
+            CodeList.Eventlist.remove(this);
+            if(this instanceof ProgramStart) {
                 ProgramStart ps = new ProgramStart(screen);
                 ps.setLocation(320, 120);
                 ps.ButtonCreate();
@@ -61,6 +88,12 @@ public class Code {
         }
         screen.setSelectCode(screen.noneCode);
     }
+
+    /**
+     * 해당 코드 버튼화로 추가
+     *
+     * @author Jongyeol
+     */
     public void ButtonCreate(){
         if(!list) CodeList.AllList.add(this);
         button = new JButton(icon);
@@ -82,14 +115,14 @@ public class Code {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                screen.setSelectCode(code);
+                screen.setSelectCode(Code.this);
                 screenX = e.getXOnScreen();
                 screenY = e.getYOnScreen();
                 if(list){
                     CodeList.AddListButton(screen);
-                    CodeList.ListList.remove(code);
+                    CodeList.ListList.remove(Code.this);
                     list = false;
-                    CodeList.AllList.add(code);
+                    CodeList.AllList.add(Code.this);
                 } else if(upCode != null){
                     upCode.underCode = null;
                     upCode = null;
@@ -100,14 +133,14 @@ public class Code {
                 if(x <= 190 || x >= 1200 || y <= 40) removeCode();
                 if(up){
                     for(Code code1 :CodeList.AllList){
-                        if(!code1.under || code1 == code || code1.underCode != null || code1 == underCode) continue;
+                        if(!code1.under || code1 == Code.this || code1.underCode != null || code1 == underCode) continue;
                         int calX = code1.x - x;
                         if(calX < 0) calX = calX * -1;
                         int calY = code1.y - y;
                         if(calY < 0) calY = calY * -1;
                         if(calX <= 80 && calY <= 80){
                             upCode = code1;
-                            code1.underCode = code;
+                            code1.underCode = Code.this;
                             x = code1.x;
                             y = code1.y + 42;
                             loadLocation();
